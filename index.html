@@ -11,7 +11,7 @@
         text-align: center;
         overflow-x: hidden;
     }
-    /* Wideo w tle */
+    /* Wideo TikTok w tle */
     #bgVideo {
         position: fixed;
         right: 0;
@@ -65,6 +65,7 @@
 <!-- Wideo TikTok w tle -->
 <video autoplay muted loop id="bgVideo">
     <source src="1000003359.mp4" type="video/mp4">
+    Twoja przeglądarka nie obsługuje wideo.
 </video>
 
 <!-- Ekran startowy -->
@@ -80,7 +81,7 @@
         <p>Niech każdy dzień będzie pełen radości, uśmiechu i przygód 🌟</p>
         <p>Pamiętaj, że masz w sobie moc, żeby spełniać marzenia 💖</p>
         <p>Niech muzyka i taniec towarzyszą Ci zawsze 🎶</p>
-        <p>Życze Ci mnóstwa przyjaciół, uśmiechu i pięknych wspomnień ✨</p>
+        <p>Życzymy Ci mnóstwa przyjaciół, uśmiechu i pięknych wspomnień ✨</p>
         <p>Niech Twoje serce będzie zawsze szczęśliwe, a każdy rok lepszy od poprzedniego ❤️</p>
         <button onclick="alert('🎉 STO LAT! 🎉\n15 lat – i to dopiero początek!')">
             Kliknij po niespodziankę 🎁
@@ -89,11 +90,8 @@
 </div>
 
 <script>
-    // Muzyka w tle
-    <audio id="music" controls>
-    <source src="mata-roz.mp3" type="audio/mpeg">
-</audio>
-
+    // Muzyka lokalna – Twój plik mata-roz.mp3
+    const music = new Audio("mata-roz.mp3");
     music.loop = true;
 
     function start() {
@@ -107,6 +105,3 @@
 
 </body>
 </html>
-
-
-
