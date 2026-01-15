@@ -91,7 +91,11 @@
 
 <script>
     // Muzyka w tle
-    const music = new Audio("https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3");
+    <audio id="music" controls>
+    <source src="mata-roz.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje audio.
+</audio>
+
     music.loop = true;
 
     function start() {
@@ -105,3 +109,4 @@
 
 </body>
 </html>
+
