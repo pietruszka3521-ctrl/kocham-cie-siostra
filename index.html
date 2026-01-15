@@ -3,70 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <title>15 urodziny 🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        color: #fff;
-        text-align: center;
-        overflow-x: hidden;
-    }
-    /* Wideo TikTok w tle */
-    #bgVideo {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -1;
-        object-fit: cover;
-        filter: brightness(50%);
-    }
-    .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 40px 20px;
-        position: relative;
-        z-index: 1;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #bc7bff);
+    color: #fff;
+    text-align: center;
+}
+
+/* Ekran startowy */
+#startScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 20px;
+}
+
+#startScreen button {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    border-radius: 30px;
+    border: none;
+    background: #ff6f91;
+    color: #fff;
+    cursor: pointer;
+}
+
+#startScreen button:hover {
+    background: #ff4f7a;
+}
+
+/* Główna karta */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    position: relative;
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    font-size: 1em;
+    line-height: 1.6;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Kolumny */
+.column {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.column video {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* Tekst */
+.column .content {
+    text-align: left;
+}
+
+/* Prawa kolumna - pełny tekst piosenki, przewijalny */
+.column.song-text {
+    font-size: 0.75em; 
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Przyciski */
+button {
+    margin-top: 15px;
+    padding: 12px 30px;
+    font-size: 1em;
+    border-radius: 30px;
+    border: none;
+    background: #ff6f91;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff4f7a;
+}
+
+/* Responsywność */
+@media (max-width: 800px) {
     .card {
-        background: rgba(0,0,0,0.5);
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        line-height: 1.7;
-        font-size: 1.2em;
-    }
-    button {
-        margin-top: 25px;
-        padding: 15px 35px;
-        font-size: 1.1em;
-        border: none;
-        border-radius: 30px;
-        background: #ff6f91;
-        color: white;
-        cursor: pointer;
-    }
-    button:hover { background: #ff4f7a; }
-    #startScreen {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
         flex-direction: column;
-        background: rgba(0,0,0,0.7);
+        align-items: center;
     }
+    .column {
+        max-width: 90%;
+    }
+    .column .content {
+        text-align: center;
+    }
+    .column.song-text {
+        max-height: 300px;
+    }
+}
 </style>
 </head>
 <body>
-
-<!-- Wideo TikTok w tle -->
-<video autoplay muted loop id="bgVideo">
-    <source src="1000003359.mp4" type="video/mp4">
-    Twoja przeglądarka nie obsługuje wideo.
-</video>
 
 <!-- Ekran startowy -->
 <div id="startScreen">
@@ -74,33 +136,103 @@
     <button onclick="start()">▶️ Kliknij, aby włączyć muzykę</button>
 </div>
 
+<!-- Główna zawartość -->
 <div class="container" id="mainContent" style="display:none;">
     <div class="card">
-        <h2>Kochana Olu 🎂</h2>
-        <p>Dziś kończysz <b>15 lat</b> – Twój wyjątkowy dzień! 🎉</p>
-        <p>Niech każdy dzień będzie pełen radości, uśmiechu i przygód 🌟</p>
-        <p>Pamiętaj, że masz w sobie moc, żeby spełniać marzenia 💖</p>
-        <p>Niech muzyka i taniec towarzyszą Ci zawsze 🎶</p>
-        <p>Życzymy Ci mnóstwa przyjaciół, uśmiechu i pięknych wspomnień ✨</p>
-        <p>Niech Twoje serce będzie zawsze szczęśliwe, a każdy rok lepszy od poprzedniego ❤️</p>
-        <button onclick="alert('🎉 STO LAT! 🎉\n15 lat – i to dopiero początek!')">
-            Kliknij po niespodziankę 🎁
-        </button>
+        <!-- Lewa kolumna: życzenia -->
+        <div class="column">
+            <div class="content">
+                <h2>Kochana Olu 🎂</h2>
+                <p>Dziś kończysz <b>15 lat</b> – Twój wyjątkowy dzień! 🎉</p>
+                <p>Niech każdy dzień będzie pełen radości, uśmiechu i przygód 🌟</p>
+                <p>Pamiętaj, że masz w sobie moc, żeby spełniać marzenia 💖</p>
+                <p>Niech muzyka i taniec towarzyszą Ci zawsze 🎶</p>
+                <p>Życzymy Ci mnóstwa przyjaciół, uśmiechu i pięknych wspomnień ✨</p>
+                <p>Niech Twoje serce będzie zawsze szczęśliwe, a każdy rok lepszy od poprzedniego ❤️</p>
+            </div>
+        </div>
+
+        <!-- Środek: TikTok video -->
+        <div class="column">
+            <video autoplay muted loop>
+                <source src="1000003359.mp4" type="video/mp4">
+                Twoja przeglądarka nie obsługuje wideo.
+            </video>
+        </div>
+
+        <!-- Prawa kolumna: pełny tekst piosenki -->
+        <div class="column song-text">
+            <div class="content">
+                <p>To nieprawda, że nie lubisz róż<br>
+                I lifestyle, w którym nic nie musisz<br>
+                Szybko Ci się znudzi<br>
+                Nucisz wszystkie moje unrelease'y<br>
+                To nieprawda, że nie lubisz róż<br>
+                I lifestyle, w którym nic nie musisz<br>
+                Szybko Ci się znudzi<br>
+                Nucisz wszystkie moje unrelease'y, bae<br>
+                Jak masz czas to jedźmy gdzieś stąd<br>
+                Jestem jak what the fuck, kiedy nie ma Cię obok<br>
+                Mam Twoje Chanel bag<br>
+                Mój zakazany owoc - jem go z tobą dziś<br>
+                Nie wiem, co powiedzieć, gdy pytają mnie o Ciebie<br>
+                Czy powiedzieć im o tobie, gdy tak patrzą<br>
+                Bo w sumie, gdyby nie ty wziąłbym obie<br>
+                A wierz mi od dawna to wolałbym opowiedzieć<br>
+                Od razu całemu światu, że Cię kocham, a nie dać ci bukiet kwiatów<br>
+                To nieprawda, że nie lubisz takich tracków, trzymajmy się faktów<br>
+                Kochasz moje wszystkie piosenki<br>
+                To nieprawda, że nie lubisz róż<br>
+                I lifestyle, w którym nic nie musisz<br>
+                Szybko Ci się znudzi<br>
+                Nucisz wszystkie moje unrelease'y, bae<br>
+                Jak masz czas to jedźmy gdzieś stąd<br>
+                Jestem jak what the fuck, kiedy nie ma Cię obok<br>
+                Mam Twoje Chanel bag<br>
+                Mój zakazany owoc - jem go z tobą dziś<br>
+                Ty mi to powiedziałaś jako pierwsza<br>
+                O pierwszej dwadzieścia, pijana pierwszego kwietnia<br>
+                Śmiałem dłuższą chwilę się z całego tego zajścia<br>
+                No bo nie wiedziałaś, że już chwilę nie ma marca<br>
+                Aha, lubisz piosenki do tańca<br>
+                Okej, robię piosenki do tańca, czasem<br>
+                Ale raczej wolę takie, gdzie jest klip pod blokiem<br>
+                Mała chciałbym Cię stąd zabrać, daleko gdzieś<br>
+                Ale muszę być na miejscu i ogarniać<br>
+                To nieprawda, że nie lubisz róż<br>
+                Nie musisz, że jesteś inna udowadniać<br>
+                To nieprawda, że nie lubisz róż<br>
+                I lifestyle, w którym nic nie musisz<br>
+                Szybko Ci się znudzi<br>
+                Nucisz wszystkie moje unrelease'y, bae<br>
+                Jak masz czas to jedźmy gdzieś stąd<br>
+                Jestem jak what the fuck, kiedy nie ma Cię obok<br>
+                Mam Twoje Chanel bag<br>
+                Mój zakazany owoc - jem go z tobą dziś<br>
+                To nieprawda, że nie lubisz róż<br>
+                I lifestyle, w którym nic nie musisz<br>
+                Szybko Ci się znudzi<br>
+                Nucisz wszystkie moje unrelease'y, bae<br>
+                Jak masz czas to jedźmy gdzieś stąd<br>
+                Jestem jak what the fuck, kiedy nie ma Cię obok<br>
+                Mam Twoje Chanel bag<br>
+                Mój zakazany owoc - jem go z tobą dziś</p>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    // Muzyka lokalna – Twój plik mata-roz.mp3
-    const music = new Audio("mata-roz.mp3");
-    music.loop = true;
+const music = new Audio("mata-roz.mp3");
+music.loop = true;
 
-    function start() {
-        music.play().catch(() => {
-            alert("Kliknij ponownie, aby odtworzyć muzykę.");
-        });
-        document.getElementById("startScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-    }
+function start() {
+    music.play().catch(() => {
+        alert("Kliknij ponownie, aby odtworzyć muzykę.");
+    });
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+}
 </script>
 
 </body>
